@@ -24,7 +24,7 @@ function draw(){
             
             if(keyIsPressed){
                 if(key=="2"){
-                    color_filter(index,r,g,b,a,row,col);
+                    negative_filter(index,r,g,b,a,row,col);
                 }
                 if(key=="1"){
                     grey_filter(index,r,g,b,a);
@@ -35,9 +35,24 @@ function draw(){
                 if(key=="4"){
                     light_filter(index,r,g,b,a,row,col);
                 }
+                 if(key=="5"){
+                    pg_filter(index,r,g,b,a,row,col);
+                }
+                if(key=="6"){
+                    dark_filter(index,r,g,b,a,row,col);
+                }
+                 if(key=="7"){
+                    bright_filter(index,r,g,b,a,row,col);
+                }
+                 if(key=="8"){
+                    green_filter(index,r,g,b,a,row,col);
+                }
+                 if(key=="9"){
+                    aa_filter(index,r,g,b,a,row,col);
+                }
             }
             else{
-               
+              
             }
         }
     }
@@ -52,10 +67,10 @@ function grey_filter(index,b){
 
 }
 
-function color_filter(index,r,g,b,a,row,col){
-    pixels[index] = r + row - 190; //red
-    pixels[index + 1] = g + col -190; //green
-    pixels[index + 2] = b; //blue
+function negative_filter(index,r,g,b,a,row,col){
+    pixels[index] = 255 - r; //red
+    pixels[index + 1] = 255 - g; //green
+    pixels[index + 2] = 255 - b; //blue
     pixels[index + 3] = a; //alpha
 }
 
@@ -71,4 +86,41 @@ function light_filter(index,r,g,b,a,row,col){
     pixels[index + 1] = g+col/7; //green
     pixels[index + 2] = b+col/7; //blue
     pixels[index + 3] = 255; //alpha
+}
+
+function pg_filter(index,r,g,b,a,row,col){
+    pixels[index] = r; //red
+    pixels[index + 1] = b//green
+    pixels[index + 2] = g//blue
+    pixels[index + 3] = a //alpha
+}
+
+
+function dark_filter(index,r,g,b,a,row,col){
+    pixels[index] = r/2; //red
+    pixels[index + 1] = g/2//green
+    pixels[index + 2] = b/2//blue
+    pixels[index + 3] = a //alpha
+}
+
+function bright_filter(index,r,g,b,a,row,col){
+    pixels[index] = r*2; //red
+    pixels[index + 1] = g*2//green
+    pixels[index + 2] = b*2//blue
+    pixels[index + 3] = a //alpha
+}
+
+function green_filter(index,r,g,b,a,row,col){
+    pixels[index] = 0; //red
+    pixels[index + 1] = g//green
+    pixels[index + 2] = 0//blue
+    pixels[index + 3] = a //alpha
+}
+
+
+function aa_filter(index,r,g,b,a,row,col){
+    pixels[index] = r + 224; //red
+    pixels[index + 1] = b - 20//green
+    pixels[index + 2] = g - 100//blue
+    pixels[index + 3] = a //alpha
 }
